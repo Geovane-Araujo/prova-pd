@@ -1,0 +1,27 @@
+﻿create table especialidades(
+	
+	id integer not null  identity primary key,
+	descricao varchar(50)
+);
+
+create table especialistas(
+	
+	crm integer not null  identity primary key,
+	nome varchar(50),
+	especialidadesId integer
+);
+
+alter table especialistas add constraint fk_especialidade foreign key (especialidadesID) references especialidades(id);
+
+create table exames(
+
+	exameid integer not null identity primary key,
+	descricao varchar(50),
+	custo money,
+	especialidadesid integer,
+	especialistaid integer
+);
+
+alter table exames add constraint fk_exames_especialidades foreign key (especialidadesid) references especialidades(id);
+alter table exames add constraint fk_exames_especialistas foreign key (especialistaid) references especialistas(crm);
+
